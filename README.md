@@ -1,6 +1,9 @@
-Variety of exercises
-(iterative, recursive, monkey patching, standalone functions):
+towers:
+ - open towers/html/towers.html in a browser to play Towers of Hanoi
 
+varietyOfExercises.js:
+
+(iterative, recursive, monkey patching, standalone functions)
  - myUniq: returns array of unique elements.
  - twoSum
  - myTranspose
@@ -18,14 +21,14 @@ Variety of exercises
  - mergeSort: sorts an array of integers using heper method merge.
  - subsets: return all subsets of an array.
 
-Constructors & Prototypes:
+constructors.js:
 
  - practice by defining a Cat class
 
-Courses:
+courses.js:
 
  - define Student and Course classes with appropriate functions
 
- Tic Tac Toe:
+tictactoe.js:
 
-  - create Javascript Tic Tac Toe game (Note: incomplete)
+ - Javascript Tic Tac Toe game (Note: incomplete)
