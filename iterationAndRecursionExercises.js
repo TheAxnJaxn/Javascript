@@ -1,7 +1,8 @@
+// bubble sort iteration-style
 Array.prototype.bubbleSort = function() {
-  var swapped = true
+  var swapped = true;
 
-  while (swapped === true) {
+  while (swapped) {
     swapped = false;
     for (var i = 0; i < this.length; i++) {
       if (this[i] > this[i+1]) {
@@ -17,37 +18,41 @@ Array.prototype.bubbleSort = function() {
   return this;
 };
 
+// takes a String and returns an Array containing its
+// unique substrings
 String.prototype.mySubstrings = function() {
   var arr = [];
 
   for (var idx1 = 0; idx1 < this.length; idx1++) {
     for (var idx2 = idx1+1; idx2 < this.length+1; idx2++) {
-      arr.push( this.substring(idx1, idx2) );
+      var tempSub = this.substring(idx1, idx2);
+      if (arr.indexOf(tempSub) === -1) { arr.push(tempSub); }
     }
-  }
-
-  return arr.myUniq();
-};
-
-function range(start, end) {
-  var arr = [];
-
-  if ( end < start ) {
-    return arr;
-  }
-  else {
-    arr.push(start)
-    arr = arr.concat(range(start+1, end))
   }
 
   return arr;
 };
 
+// returns an Array of all numbers between start and end
+//  - recursive solution
+function range(start, end) {
+  var arr = [];
+
+  if (start < end) {
+    arr.push(start);
+    arr = arr.concat(range(start+1, end));
+  }
+
+  return arr;
+};
+
+// recursive exponent
 function exponent1(base, exponent) {
-  if (exponent === 0) return 1;
-  return base * exponent1(base, exponent - 1)
+  if (exponent === 0) { return 1; }
+  return base * exponent1(base, exponent - 1);
 }
 
+// recursive exponent
 function exponent2(base, exponent) {
   if (exponent === 0) return 1;
   if (exponent === 1) return base;
@@ -60,26 +65,27 @@ function exponent2(base, exponent) {
   }
 }
 
+// returns array of first n fib numbers
 function fib(n) {
   if (n == 1) return [1];
   if (n == 2) return [1, 1];
 
-  var arr = fib(n-1)
+  var arr = fib(n-1);
 
-  var last_two = arr.slice(-2)
-  var sum = last_two[0] + last_two[1]
+  var lastTwo = arr.slice(-2);
+  arr.push(lastTwo[0] + lastTwo[1]);
 
-  arr.push(sum)
   return arr;
 }
 
+// binary search
 function bsearch(arr, target) {
-  if (arr.length < 2 && arr[0] !== target) return null;
+  if (arr.length < 2 && arr[0] !== target) { return null; }
 
-  var midpoint = Math.floor(arr.length/2)
+  var midpoint = Math.floor(arr.length/2);
 
-  var left_arr = arr.slice(0,midpoint)
-  var right_arr = arr.slice(midpoint + 1)
+  var left_arr = arr.slice(0, midpoint);
+  var right_arr = arr.slice(midpoint + 1);
 
   if (arr[midpoint] === target) {
     return midpoint;
@@ -100,7 +106,7 @@ function bsearch(arr, target) {
 }
 
 function makeChange(value, coins) {
-  coins = coins.myUniq();
+  //coins = coins.myUniq();  //method not avail here
   var possibilities = [];
 
   for (var i = 0; i < coins.length; i++) {
@@ -130,10 +136,10 @@ function merge(array1, array2) {
 
   while (array1.length > 0 && array2.length > 0) {
     if (array1[0] < array2[0]) {
-      merged.push(array1.shift())
+      merged.push(array1.shift());
     }
     else {
-      merged.push(array2.shift())
+      merged.push(array2.shift());
     }
   }
 
@@ -149,9 +155,9 @@ function subsets(array) {
   var expanding_subs = subs;
 
   subs.forEach( function (subset) {
-    var temp_subset = subset.slice()
-    temp_subset.push(popped_thing)
-    expanding_subs.push(temp_subset)
+    var temp_subset = subset.slice();
+    temp_subset.push(popped_thing);
+    expanding_subs.push(temp_subset);
   });
 
   return expanding_subs;
