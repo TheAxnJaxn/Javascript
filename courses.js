@@ -2,19 +2,25 @@ function Student(first, last) {
   this.first = first;
   this.last = last;
   this.courses = [];
-}
+};
 
 Student.prototype.name = function() {
   return this.first + " " + this.last;
 };
 
+// enrolls student in course, unless already enrolled
 Student.prototype.enroll = function(course) {
-  if (!this.courses.includes(course)) {
+  if (this.courses.indexOf(course) === -1) {
+    if (this.hasConflict(course)) {
+      throw "Course conflict"
+    }
     this.courses.push(course);
     course.addStudent(this);
   }
 };
 
+// returns hash of departments with total number of credits
+// for student's enrolled courses
 Student.prototype.courseLoad = function() {
   var courseLoadHash = {};
   this.courses.forEach( function(course) {
@@ -26,49 +32,50 @@ Student.prototype.courseLoad = function() {
     }
   } );
   return courseLoadHash;
-}
+};
 
-function Course(name, department, credits) {
+Student.prototype.hasConflict = function (newCourse) {
+  var conflict = false;
+
+  this.courses.forEach( function(course) {
+    if(course.hasConflict(newCourse)) {
+      conflict = true;
+    };
+  });
+
+  return conflict;
+};
+
+
+function Course(name, department, credits, days, block) {
   this.name = name;
   this.department = department;
   this.credits = credits;
   this.students = [];
+  this.days = days;
+  this.block = block;
 }
 
+// adds student to Course's students Array
 Course.prototype.addStudent = function(student) {
-  if (!this.students.includes(student)) {
+  if (this.students.indexOf(student) === -1) {
     this.students.push(student);
     student.enroll(this);
   }
-}
+};
 
+// returns true if the two courses conflict
+Course.prototype.hasConflict = function (secondCourse) {
+  var firstCourse = this;
+  var conflict = false;
 
-
-if (![].includes) {
-  Array.prototype.includes = function(searchElement /*, fromIndex*/ ) {
-    'use strict';
-    var O = Object(this);
-    var len = parseInt(O.length) || 0;
-    if (len === 0) {
-      return false;
-    }
-    var n = parseInt(arguments[1]) || 0;
-    var k;
-    if (n >= 0) {
-      k = n;
-    } else {
-      k = len + n;
-      if (k < 0) {k = 0;}
-    }
-    var currentElement;
-    while (k < len) {
-      currentElement = O[k];
-      if (searchElement === currentElement ||
-         (searchElement !== searchElement && currentElement !== currentElement)) {
-        return true;
+  firstCourse.days.forEach( function(day1) {
+    secondCourse.days.forEach( function(day2) {
+      if(day1 === day2 && firstCourse.block === secondCourse.block) {
+        conflict = true;
       }
-      k++;
-    }
-    return false;
-  };
-}
+    });
+  });
+
+  return conflict;
+};

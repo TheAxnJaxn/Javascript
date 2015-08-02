@@ -1,15 +1,22 @@
 towers:
+
  - open towers/html/towers.html in a browser to play Towers of Hanoi
 
-varietyOfExercises.js:
+tictactoe.js:
 
-(iterative, recursive, monkey patching, standalone functions)
- - myUniq: returns array of unique elements.
- - twoSum
- - myTranspose
- - myEach
- - myMap: must use your myEach function; use a closure.
- - myInject: take a function; start the accumulator variable with the first value.
+ - Javascript Tic Tac Toe game (Note: incomplete)
+
+arrayExercises.js:
+
+ - myEach: takes a callback function, calls that function on every element of the array, and then returns the original array.
+ - myMap: returns a new array with the results of running the called block once for each element. Must use myEach function.
+ - myReduce: applies a function against an accumulator and each value of the array to reduce it to a single value. Takes a function; start the accumulator variable with the first value.
+ - myUniq: returns new array of unique elements, in the order in which they first appeared. Must use myEach.
+ - twoSum: finds all pairs of positions where the elements at those positions sum to zero.
+ - myTranspose: called on a square matrix (two-dimensional grid of numbers), converts between the row-oriented and column-oriented representations of that matrix.
+
+iterationAndRecursionExercises.js:
+
  - bubbleSort: can modify the original array.
  - mySubstrings
  - range
@@ -21,14 +28,6 @@ varietyOfExercises.js:
  - mergeSort: sorts an array of integers using heper method merge.
  - subsets: return all subsets of an array.
 
-constructors.js:
-
- - practice by defining a Cat class
-
 courses.js:
 
- - define Student and Course classes with appropriate functions
-
-tictactoe.js:
-
- - Javascript Tic Tac Toe game (Note: incomplete)
+ - A set of classes to model Students and Courses with appropriate functions. Each Student has a first and last name, and Array of courses. Each Course has a name, department, credits, Array of students, Array of days, and time block #1-8.
