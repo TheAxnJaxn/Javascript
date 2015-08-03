@@ -6,6 +6,13 @@ tictactoe.js:
 
  - Javascript Tic Tac Toe game (Note: incomplete)
 
+argumentsExercises.js:
+ - sum: takes any number of arguments and returns the sum.
+ - myBind: binds context, arguments given when called, and any extra arguments.
+ - curriedSum: takes an integer (how many numbers to sum) and returns a function that can be successively called with single arguments until it finally returns a sum.
+ - curry: returns a function that will collect arguments until there are the correct number of them, and then call the original function with all arguments applied. If there ar enot enough arguments, it returns itself.
+ - inherits: implements class inheritance using a surrogate. If the child class's prototype were set directly to the parent class's prototype, then any new methods defined on the child class's prototype would end up also being added to the parent class's prototype.
+
 arrayExercises.js:
 
  - myEach: takes a callback function, calls that function on every element of the array, and then returns the original array.
